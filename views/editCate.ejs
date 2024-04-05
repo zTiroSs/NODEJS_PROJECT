@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<style>
+
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0px 10px rgba(128, 128, 128, 0.479);
+}
+
+h2 {
+    color: #dc3545;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 18px;
+    color: #495057;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.image-preview img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.button {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #c82333;
+}
+
+</style>
+<body>
+    <div class="sidebar">
+        <h2 class="sidebar-heading">Admin Menu</h2>
+        <ul>
+            <li><a href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href="/categories"><i class="fas fa-list-alt"></i> Quản lí danh mục</a></li>
+            <li><a href="/products"><i class="fas fa-cubes"></i> Quản lí sản phẩm</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Quản lí đơn hàng</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Quản lí khách hàng</a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <form action="/categories/edit" method="POST" enctype="multipart/form-data" class="edit-form">
+            <h2>Edit Category ID <%= category.id %></h2>
+            <input type="hidden" name="id" value="<%= category.id %>">
+            <div class="form-group">
+                <label for="nameCate">Category Name:</label>
+                <input class="input-field" type="text" name="ten_loai" value="<%= category.ten_loai %>">
+            </div>
+            <div class="form-group">
+                <label for="imgCate">Category Image:</label>
+                <div class="image-preview">
+                    <img src="/images/<%= category.img %>" width="200">
+                </div>
+                <input type="hidden" name="imgOld" value="<%= category.img %>">
+                <input class="input-field" type="file" name="img">
+            </div>
+            <div class="form-group">
+                <input class="btn btn-primary button" type="submit" value="Save">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

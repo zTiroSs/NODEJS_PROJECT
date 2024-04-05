@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký tài khoản</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=M+PLUS+Rounded+1c:wght@300&family=Play:wght@400;700&family=Poppins:wght@100&family=Ruda:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/home.css" type="text/css">
+    <link rel="stylesheet" href="/stylesheets/sign-in.css" type="text/css">
+    <style>
+       
+    </style>
+</head>
+<body>
+    <header class=""> 
+        <div class="ctn">
+            <!-- MAP -->
+            <div class="map">
+                <a href="#">Trang chủ</a>
+                <a href="#">Giới thiện</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách</a>
+                <a href="#">Ưu đãi</a>
+            </div>
+            <!-- Mạng xã hội -->
+            <div class="mx">
+                <a href="">
+                    <i class="fa-brands fa-twitter"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-linkedin"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-youtube"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-facebook"></i>
+
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- HEADER MENU -->
+    <nav class=" text-center" > 
+        <div class="ctn">
+        <a class="logo" href="index.html">
+            <img src="/IMG/ZTStore.png" alt="">
+        </a>
+            <div class="menu"></div>
+            
+        <div class="ac">
+
+            <form action="" id="findForm" action="timkiem.html" method="get">
+                <input type="text" name="" id="tukhoa" placeholder="Tìm kiểm sản phẩm">
+            </form>
+            <a href="" class="find" onclick="return showFind()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </a>
+            <a href="/users/log-in">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+            <a href="giohang.html">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </a>
+
+        </div>
+
+    </div>
+    </nav>
+
+
+
+    <form action="" class="sign-in">    
+        <h2 class="title">Đăng ký tài khoản</h2>
+        <p>Họ và tên: 
+            <input type="text" name="fullname" id="fullname" placeholder="VD: Nguyễn Tấn Vinh" class="input">
+        </p>
+        <p>Tên đăng nhập: 
+            <input type="text" name="fullname" id="fullname" placeholder="Từ 8-14 kí tự" class="input">
+        </p>
+
+        <p>Email: 
+            <input type="email" name="email" id="email" placeholder="VD: vinhdepchai123@gmail.com" class="input">
+        </p>
+        <p>Mật khẩu: 
+            <input type="password" name="password" id="password" placeholder="Từ 8-16 kí tự" class="input">
+        </p>
+        <p>Nhập lại mật khẩu: 
+            <input type="password" name="password" id="password" placeholder="Nhập lại mật khẩu của bạn" class="input">
+        </p>
+        <button class="btn">Đăng ký</button>
+    </form>
+
+    <div class="switch-page">
+        <span>Bạn đã có tài khoản? </span>
+        <a href="log-in">Đăng nhập</a>
+    </div>
+
+
+
+        <!-- FOOTER -->
+
+
+        <footer>
+            <section class="first">
+                <div>
+                    <i class="fa-solid fa-box"></i>
+                    <h2>Giao hàng miễn phí</h2>
+                    <div>
+                        <p>Hỗ trợ giao hàng, trả hàng miễn phí trong 7 ngày</p>
+    
+                    </div>
+                </div>
+                <div>
+                    <i class="fa-solid fa-credit-card"></i>
+                    <h2>Thanh toán tiện lợi</h2>
+                    <div>
+                        <p>Thanh toán với nhiều hình thức, hỗ trợ trả góp</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="fa-solid fa-headset"></i>
+                    <h2>Chăm sóc khách hàng</h2>
+                    <div>
+                        <p>Đội ngũ nhân viên hỗ trợ và tư vấn 24/7</p>
+                    </div>
+                </div>
+            </section>
+            <section class="second">
+    
+                <div class="locate">
+                    <a href="index.html">
+                        <img src="/IMG/ZTStore.png" alt="">
+                    </a>
+    
+    
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i><span>
+                            ZT TECH, Quang Trung, Q12,
+                            TP Hồ Chí Minh    
+                    </span>
+                </p>
+    
+                    <p><i class="fa-solid fa-phone-volume"></i><span>
+                        +84.867.991.xyz
+                    </span>
+                </p>
+    
+                    <p><i class="fa-solid fa-envelope"></i><span>
+                        vinhntps28930@fpt.edu.vn
+                    </span>
+                </p>
+                </div>
+    
+                <div class="tag account">
+                    <strong>Tài khoản</strong>
+                    <a href="">Chính sách</a>
+                    <a href="">Đăng nhập</a>
+                    <a href="">Đăng ký</a>
+                    <a href="">Đơn hàng</a>
+                </div>
+                <div class="tag">
+                    <strong>Thông tin</strong>
+                    <a href="">Blog</a>
+                    <a href="">Công việc</a>
+                    <a href="">FAQ</a>
+                    <a href="">Chính sách bảo mật</a>
+                </div>
+                <div class="tag">
+                    <strong>Mạng xã hội</strong>
+                    <a href="">
+                        <i class="fa-brands fa-facebook-f"></i> facebook
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-instagram"></i> instagram
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-linkedin-in"></i> linkedin
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-pinterest"></i> pinterest
+                    </a>
+                </div>
+                <div class="contact">
+                    <h2>Theo dõi & nhận thông báo</h2>
+                    <form action="">
+                        <input type="text" placeholder="Email của bạn">
+                        <button type="submit" title="Gửi">➦</button>
+    
+                    </form>
+                </div>
+            </section>
+            <section class="end">
+                    <p>Được thực hiện bởi Nguyễn Tấn Vinh - TiroSs</p>
+                    <p>Email: vutrongphung1212@gmail.com</p>
+            </section>
+        </footer>
+</body>
+</html>

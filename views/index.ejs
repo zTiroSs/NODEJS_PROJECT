@@ -1,0 +1,488 @@
+<html> 
+    <head> 
+    <title>Trang chủ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=M+PLUS+Rounded+1c:wght@300&family=Play:wght@400;700&family=Poppins:wght@100&family=Ruda:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    </head>
+
+    <style>
+        .user-info-log{
+            font-size: 10px;
+
+        }
+        .user-info-log p{
+            margin: 0px;
+        }
+        .user-info-log a{
+            padding: 2px;
+            font-size: 12px;
+            margin: 0px;
+        }
+    </style>
+<body>
+
+            <!-- HEADER -->
+            <header class="" style="height: 4%;"> 
+                <div class="ctn">
+                    <!-- MAP -->
+                    <div class="map">
+                        <a href="#">Trang chủ</a>
+                        <a href="#">Giới thiện</a>
+                        <a href="#">Liên hệ</a>
+                        <a href="#">Chính sách</a>
+                        <a href="#">Ưu đãi</a>
+                    </div>
+                    <!-- Mạng xã hội -->
+                    <div class="mx">
+                        <a href="">
+                            <i class="fa-brands fa-twitter"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-instagram"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-linkedin"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-youtube"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-facebook"></i>
+
+                        </a>
+                    </div>
+
+                </div>
+            </header>
+            <!-- HEADER MENU -->
+            <nav class=" text-center" style="height: 8%;"> 
+                <div class="ctn">
+                <a class="logo" href="index.html">
+                    <img src="IMG/ZTStore.png" alt="">
+                </a>
+                    <div class="menu">
+                        <a href="/">Trang chủ</a>
+                        <a href="/shop/all">Cửa hàng</a>
+                        <% for(let c of categories) { %>
+                        <a href="/shop/<%= c.id %>"><%= c.ten_loai %></a>
+                        <% } %>
+                    </div>
+
+                <div class="ac">
+                    <form action="" id="findForm" action="timkiem.html" method="get">
+                        <input type="text" name="" id="tukhoa" placeholder="Tìm kiểm sản phẩm">
+                    </form>
+                    <a href="" class="find" onclick="return showFind()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                    <% if (session.user) { %>
+                                <% if (session.user.vaitro == 0) { %>
+                        <div class="user-info-log">
+                                    <p>Hi, <strong>ADMIN <%= session.user.name %>!</strong> </p>
+                                    <a href="/users/log-out" class="btn btn-danger">Đăng xuất</a>
+                                    <a href="/admin" class="btn btn-info">Trang admin</a>
+                                </div>
+                                <% } 
+                                else { %>
+                        <div class="user-info-log">
+                                    <p>Hi, <strong><%= session.user.name %>!</strong> </p>
+                                    <a href="/users/log-out" class="btn btn-danger">Đăng xuất</a>
+                                </div>
+                                <% } %>
+                            <% } 
+                            else { %>
+                                <a href="/users/log-in">
+                                    <i class="fa-solid fa-user"></i>
+                                </a>
+                            <% } %>
+                    <a href="">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                    <a href="giohang.html">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+
+                </div>
+
+            </div>
+            </nav>
+            
+            <!-- SLIDE SHOW -->
+            <section class="slideshow">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+
+                      <div class="swiper-slide">
+                        <div>
+                            <span>Sản phẩm HOT!!!</span>
+                            <p>iPhone 15 <br> Công nghệ đẳng cấp</p>
+                            <button>Xem ngay</button>
+                        </div>
+                        <img src="IMG/Slide/Slide1.webp" alt="">
+                        
+                      </div>
+                      <div class="swiper-slide">
+                        <div>
+                            <span>Đồng hồ thông minh</span>
+                            <p>Tất cả mọi thứ<br>Nằm trên cổ tay bạn</p>
+                            <button>Xem ngay</button>
+                        </div>
+                        <img src="IMG/Slide/Slide3.webp" alt="">
+                        
+                      </div>
+                      <div class="swiper-slide">
+                        <div>
+                            <span>Thời thượng - Sang trọng</span>
+                            <p>MacBook với<br>sự tiện lợi và đa dụng</p>
+                            <button>Xem ngay</button>
+                        </div>
+                        <img src="IMG/Slide/Slide2.webp" alt="">
+                        
+                      </div>
+
+
+                    </div>
+                </div>
+            </section>
+            <aside>
+                <div>
+                    <div class="bor">
+                        <p>APPLE
+                        WATCH</p>
+                    </div>
+                    <img src="../IMG/CTGR/apple_watch.webp" alt="">
+                </div>
+                <div>
+                    <div class="bor">
+                        <p>TV &
+                           VIDEO</p>
+                    </div>
+                    <img src="../IMG/CTGR/order.webp" alt="">
+                </div>
+                <div>
+                    <div class="bor">
+                        <p>IPAD &
+                            IPAD AIR</p>
+                    </div>
+                    <img src="../IMG/CTGR/phone.webp" alt="">
+                </div>
+            </aside>
+
+            <div class="container" style="">
+                <main class="" style="height: fit-content;"> 
+                    <!-- Iphone -->
+                    <section id="iphone">
+                        <div class='listsp_ip'>
+                            <h2>Các dòng iPhone</h2>
+                            <p>Hãy chọn ngay 1 chiếc iPhone cho riêng bạn!</p>
+                            <div id="data">
+                                <% for(let ip_product of iphoneproducts) { %>
+                                <div class="sp">
+                                    <div class="check">
+                                    <span>
+                                        <button onclick=""><i class="fa-solid fa-bag-shopping"></i></button>
+                                    </span>
+                                    <span>
+                                        <button href=""><i class="fa-solid fa-heart"></i></button>
+                                    </span>
+                                    </div>
+                                    <a href="chitiet.html?id=<%= ip_product.ten_sp %>">            <img src="<%= ip_product.hinh %>">
+                                    </a>
+                                    <p><%= ip_product.ten_sp %></p>
+                                    <a class="more" href="chitiet.html?id=<%= ip_product.ten_sp %>">+ Xem thông tin</a>
+                                    <% if (Number(ip_product.giam_gia) !== 0) { %>
+                                        <% var giasale = Number(ip_product.gia - ip_product.gia * (ip_product.giam_gia / 100)).toLocaleString("vi"); %>
+                                        <h4><del><%= Number(ip_product.gia).toLocaleString("vi") %>VND</del> <%= giasale %>VND</h4> 
+                                    <% } else { %>
+                                        <h4><%=Number (ip_product.gia).toLocaleString("vi") %>VND</h4> 
+                                    <% } %>
+                                    
+                                    </div>
+                                    <% } %>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Kệ hàng -->
+                    <section id="prox">
+                    <div id="samsung">
+                        <div class="title">
+                            Kệ hàng
+                        </div>
+                        <div class="category">
+                            <button class="btn_category active" onclick="hienprox(1)">Samsung</button>
+                            <button class="btn_category" onclick="hienprox(3)">Oppo</button>
+                            <button class="btn_category" onclick="hienprox(4)">Xiaomi</button>
+                            <button class="btn_category" onclick="hienprox(5)">Vivo</button>
+                            <button class="btn_category" onclick="hienprox(6)">Realmie</button>
+                        </div>
+                        <div class="viewshop">
+                            <a href="">Xem thêm</a>
+                        </div>
+                    </div>
+
+                    </section>
+
+                    
+                </main>
+            </div>
+            <!-- ADS -->
+            <section id="ads" >
+                <div class="ads-content">
+                    <h3>SALE HOT ĐÓN 2024!!!</h3>
+                    <h1>Thời gian chỉ còn</h1>
+
+                    <div class="clock">
+                        <span >
+                            <strong id="days">
+                                01
+                            </strong>
+                            <br>ngày
+                        </span>
+
+                        <span >
+                            <strong id="hours">
+                                01
+                            </strong>
+                            <br>giờ
+                        </span>
+
+                        <span>
+                            <strong id="minutes">
+                                01
+                            </strong>
+                            <br>phút
+                        </span>
+
+                        <span>
+                            <strong id="seconds">
+                                01
+                            </strong>
+                            <br>giây
+                        </span>
+                        
+                    </div>
+
+                    <h4>Đừng bỏ lỡ, hãy mua ngay!!!</h4>
+                </div>
+            </section>
+
+            <section class="sale-box container">
+                <div class="banner">
+                </div>
+                <div id="sale-products">
+                    <div>
+                        <div class='sale_products'>
+                            <div id="data">
+                                <% for(let sp_hot of hotproducts) { %>
+                                    <div class="sp">
+                                        <div class="hot-tag">
+                                            HOT!!!
+                                        </div>
+                                        <% if (Number(sp_hot.giam_gia) !== 0) { %>
+                                        <div class="sale_off">
+                                            <%= sp_hot.giam_gia %>%
+                                        </div>
+                                        <% }  %>
+                                        <div class="check">
+                                            <span>
+                                                <button onclick=""><i class="fa-solid fa-bag-shopping"></i></button>
+                                            </span>
+                                            <span>
+                                                <button href=""><i class="fa-solid fa-heart"></i></button>
+                                            </span>
+                                        </div>
+                                        <a href=""> <img src="<%= sp_hot.hinh %>"></a>
+                                        <p><%= sp_hot.ten_sp %></p>
+                                        <a class="more" href="">+ Xem thông tin</a>
+                                        <% if (Number(sp_hot.giam_gia) !== 0) { %>
+                                            <% var giasale = Number(sp_hot.gia - sp_hot.gia * (sp_hot.giam_gia / 100)).toLocaleString("vi"); %>
+                                            <h4><del><%= Number(sp_hot.gia).toLocaleString("vi") %>VND</del> <%= giasale %>VND</h4> 
+                                        <% } else { %>
+                                            <h4><%= sp_hot.gia.toLocaleString("vi") %>VND</h4> 
+                                        <% } %>
+                                    </div>
+                                <% } %>
+                                
+                                
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            
+            <footer>
+                <section class="first">
+                    <div>
+                        <i class="fa-solid fa-box"></i>
+                        <h2>Giao hàng miễn phí</h2>
+                        <div>
+                            <p>Hỗ trợ giao hàng, trả hàng miễn phí trong 7 ngày</p>
+
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-credit-card"></i>
+                        <h2>Thanh toán tiện lợi</h2>
+                        <div>
+                            <p>Thanh toán với nhiều hình thức, hỗ trợ trả góp</p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-headset"></i>
+                        <h2>Chăm sóc khách hàng</h2>
+                        <div>
+                            <p>Đội ngũ nhân viên hỗ trợ và tư vấn 24/7</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="second">
+
+                    <div class="locate">
+                        <a href="index.html">
+                            <img src="IMG/ZTStore.png" alt="">
+                        </a>
+
+
+                        <p>
+                            <i class="fa-solid fa-location-dot"></i><span>
+                                ZT TECH, Quang Trung, Q12,
+                                TP Hồ Chí Minh    
+                        </span>
+                    </p>
+
+                        <p><i class="fa-solid fa-phone-volume"></i><span>
+                            +84.867.991.xyz
+                        </span>
+                    </p>
+
+                        <p><i class="fa-solid fa-envelope"></i><span>
+                            vinhntps28930@fpt.edu.vn
+                        </span>
+                    </p>
+                    </div>
+
+                    <div class="tag account">
+                        <strong>Tài khoản</strong>
+                        <a href="">Chính sách</a>
+                        <a href="">Đăng nhập</a>
+                        <a href="">Đăng ký</a>
+                        <a href="">Đơn hàng</a>
+                    </div>
+                    <div class="tag">
+                        <strong>Thông tin</strong>
+                        <a href="">Blog</a>
+                        <a href="">Công việc</a>
+                        <a href="">FAQ</a>
+                        <a href="">Chính sách bảo mật</a>
+                    </div>
+                    <div class="tag">
+                        <strong>Mạng xã hội</strong>
+                        <a href="">
+                            <i class="fa-brands fa-facebook-f"></i> facebook
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-instagram"></i> instagram
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-linkedin-in"></i> linkedin
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-pinterest"></i> pinterest
+                        </a>
+                    </div>
+                    <div class="contact">
+                        <h2>Theo dõi & nhận thông báo</h2>
+                        <form action="">
+                            <input type="text" placeholder="Email của bạn">
+                            <button type="submit" title="Gửi">➦</button>
+
+                        </form>
+                    </div>
+                </section>
+                <section class="end">
+                        <p>Được thực hiện bởi Nguyễn Tấn Vinh - TiroSs</p>
+                        <p>Email: vutrongphung1212@gmail.com</p>
+                </section>
+            </footer>
+
+
+
+
+
+</body>
+</html>
+<!-- <script>
+    function hienprox(categoryId) {
+    window.location.href = `/products/${categoryId}`;
+}
+</script> -->
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: false,
+        effect: 'slide',
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var categoryButtons = document.querySelectorAll('.btn_category');
+        categoryButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                categoryButtons.forEach(function (btn) {
+                    btn.classList.remove('active');
+                });
+                    button.classList.add('active');
+            });
+        });
+    });
+    function showFind(){
+    let searchInput = document.getElementById('findForm');
+    searchInput.classList.toggle('active');
+    return false;
+}
+    </script>
+    <!-- Đếm ngày -->
+    <script>
+        const targetDate = new Date("2024-03-30T00:00:00").getTime();
+        const updateClock = () => {
+            const now = new Date().getTime();
+            const timeLeft = targetDate - now;
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            document.getElementById("days").innerText = formatTime(days);
+            document.getElementById("hours").innerText = formatTime(hours);
+            document.getElementById("minutes").innerText = formatTime(minutes);
+            document.getElementById("seconds").innerText = formatTime(seconds);
+        };
+        const formatTime = (time) => (time < 10 ? `0${time}` : time);
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+    

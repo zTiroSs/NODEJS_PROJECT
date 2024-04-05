@@ -1,0 +1,63 @@
+header{
+    height: 36.44px;
+}
+nav{
+    height: 80px;
+    padding: 1px 0px;
+}
+
+
+.sign-in {
+    max-width: 400px;
+    margin: 15px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input{
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.sign-in p {
+    margin: 0;
+}
+
+.switch-page {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.switch-page a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.switch-page a:hover {
+    text-decoration: underline;
+}

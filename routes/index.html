@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Additional styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #000;
+            color: #fff;
+            padding-top: 30px;
+            padding-left: 20px;
+            overflow-y: auto; /* Add scrollbar when content exceeds height */
+            transition: width 0.5s;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px 0;
+            transition: background-color 0.3s;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .sidebar ul li:first-child {
+            border-top: none;
+        }
+        .sidebar ul li a {
+            color: #fff;
+            text-decoration: none;
+            display: block;
+        }
+        .sidebar ul li a:hover {
+            color: #fff;
+            background-color: #333;
+            transition: background-color 0.3s;
+        }
+        .sidebar-heading {
+            padding: 20px 10px;
+            font-size: 1.4em;
+            color: #fff;
+            background-color: #000;
+            margin-bottom: 20px;
+        }
+        .logout-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 210px;
+            padding: 10px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .logout-btn i {
+            margin-right: 10px;
+        }
+        .logout-btn:hover {
+            background-color: #495057;
+            transition: background-color 0.3s;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2 class="sidebar-heading">Admin Menu</h2>
+        <ul>
+            <li><a href="#"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href="#"><i class="fas fa-list-alt"></i> Quản lí danh mục</a></li>
+            <li><a href="#"><i class="fas fa-cubes"></i> Quản lí sản phẩm</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Quản lí đơn hàng</a></li>
+            <li><a href="#"><i class="fas fa-users"></i> Quản lí khách hàng</a></li>
+        </ul>
+        <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Thoát</a>
+    </div>
+    <div class="content">
+        <h1>Admin Dashboard</h1>
+        <p>Welcome to the admin dashboard. You can manage your site from here.</p>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

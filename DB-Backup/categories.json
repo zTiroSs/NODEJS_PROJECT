@@ -1,0 +1,31 @@
+
+[
+    {
+        "id": "1",
+        "ten_loai": "Samsung Galaxy"
+      },
+      {
+        "id": "2",
+        "ten_loai": "Iphone"
+      },
+      {
+        "id": "3",
+        "ten_loai": "Oppo"
+      },
+      {
+        "id": "4",
+        "ten_loai": "Xiaomi"
+      },
+      {
+        "id": "5",
+        "ten_loai": "Vivo"
+      },
+      {
+        "id": "6",
+        "ten_loai": "Realme"
+      },
+      {
+        "id": "7",
+        "ten_loai": "iTel"
+      }
+    ]

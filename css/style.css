@@ -1,0 +1,244 @@
+/* 
+body{
+    margin: 0px;
+    padding: 0px;
+} */
+body {
+    overflow-x: hidden;
+}
+:root{
+    --poppins:'Poppins', sans-serif;
+    --fira: 'Fira Sans', sans-serif;
+    --mplus: 'M PLUS Rounded 1c', sans-serif;
+    --play: 'Play', sans-serif;
+    --ruda: 'Ruda', sans-serif;
+}
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* HEADER */
+header {
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+}
+.ctn{
+    width: 95%;
+    margin: auto;
+    display: flex;
+}
+header a{
+    font-family: var(--play);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: 500;
+    /* background-color: black; */
+    padding: 2px 3px;
+    margin: 0px 4px;
+}
+.map{
+    /* background-color: aqua; */
+    width: fit-content;
+}
+.map a{
+    font-size: 15px;
+}
+.mx a{
+    margin: 0px 0px;
+}
+.mx{
+    margin-left: auto;
+}
+.mx i{
+    color: rgb(255, 255, 255);
+    margin-right: 5px;
+}
+.container{
+}
+/* NAV */
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+nav img{
+    width: 180px;
+}
+.menu{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+}
+.menu a{
+    font-size: 20px;
+    font-family: var(--play);
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    margin: 0px 10px;
+    font-weight: bold;
+}
+nav .ac{ 
+    margin: 0px;
+    height: fit-content;
+    padding: 10px;
+    font-size: 24px;
+    margin-left: auto;
+    color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+}
+
+nav .ac form{
+    font-family: var(--play);
+    width: fit-content;
+
+}
+nav form.active input{
+    display: block;
+}
+nav form input{
+    display: none;
+    margin-right: 4px;
+    border: 1px solid #d1d1d1; 
+    font-size: 13px;
+    padding: 3px 10px;
+    /* transition: opacity 0.4s ease, width 0.5s ease-in, display 5s ease; */
+
+}
+nav form input::placeholder{
+    color: rgba(165, 165, 165, 0.637);
+}
+nav .ac .find i{
+    /* display:flex; */
+}
+nav .ac a{
+    margin: 3px 5px;
+    color: white;
+}
+nav .ac i{
+    color: black;
+}
+/* FOOTER */
+footer{
+    background-color: rgba(241, 241, 241, 0.322);
+    width: 100%;
+    height: fit-content;
+    padding: 10px 30px;
+}
+/* FIRST */
+.first{
+    width: 100%;
+    height: 300px;
+    display: grid;
+    justify-content: center;
+    gap: 40px;
+    grid-template-columns: 25% 25% 25%;
+    text-align: center;
+}
+.first>div{
+    margin-top: 50px;
+    padding-top:20px ;
+    font-family: var(--play);
+    display: block;
+    justify-content: center;
+}
+.first>div i{
+    color: rgba(168, 168, 168, 0.781);
+    font-size: 60px;
+}
+.first>div h2{
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.first>div div{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+}
+.first div div p{
+    width: 260px;
+}
+
+/* SECOND */
+.second{
+    width: 100%;
+    height: 250px;
+    display: grid;
+    grid-template-columns: 33% 10% 10% 10% 33%;
+    grid-template-rows: 200px;
+    gap: 10px;
+    justify-content:  center;
+}
+.second>div{
+    font-family: var(--play);
+}
+.locate img{
+    margin-bottom: 7px;
+    width: 35%;
+}
+.locate p{
+    margin: 0px;
+    margin-bottom: 5px;
+    width: 35%;
+}
+.locate p i{
+    font-size: 15px;
+}
+.tag a{
+    width: fit-content;
+    margin-top: 10px;
+    text-decoration: none;
+    color: rgb(136, 136, 136);
+    display: block;
+    transition: 0.5s;
+}
+.tag a:hover{
+    color: red;
+}
+.tag a i{
+    margin-right: 2px;
+}
+.contact h2{
+    font-weight: 560;
+}
+.contact form{
+    display: flex;
+    align-items: center;
+}
+.contact input{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    width: 80%;
+    padding: 10px 0px;
+    border-bottom: 1px solid black;
+}
+.contact input:focus{
+    outline: none;
+}
+.contact button{
+    background-color: rgba(255, 255, 255, 0);
+    font-weight: 1;
+    margin-left: 10px;
+    border: none;
+    font-size: 35px;
+}
+.end{
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0px;
+    width: 100%;
+    height: fit-content;
+    border-top: 0.5px solid rgba(128, 128, 128, 0.288);
+}
+.end p{
+    margin: 0px;
+    font-size: 15px;
+    color: rgba(48, 48, 48, 0.678);
+    width: fit-content;
+    font-family: var(--play);
+}

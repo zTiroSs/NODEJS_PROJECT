@@ -1,0 +1,296 @@
+<html> 
+    <head> 
+    <title>Loại</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300&family=M+PLUS+Rounded+1c:wght@300&family=Play:wght@400;700&family=Poppins:wght@100&family=Ruda:wght@400;500;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/loai.css">
+    </head>
+    <body>
+        <header class="" style="height: 40px;"> 
+            <div class="ctn">
+
+                <div class="map">
+                    <a href="#">Trang chủ</a>
+                    <a href="#">Giới thiện</a>
+                    <a href="#">Liên hệ</a>
+                    <a href="#">Chính sách</a>
+                    <a href="#">Ưu đãi</a>
+                </div>
+                
+                <div class="mx">
+                    <a href="">
+                        <i class="fa-brands fa-twitter"></i>
+
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-linkedin"></i>
+
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-youtube"></i>
+
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-facebook"></i>
+
+                    </a>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- HEADER MENU -->
+        <nav class=" text-center" style="height: 80px;"> 
+            <div class="ctn">
+                <a class="logo" href="index.html">
+
+                <img src="IMG/ZTStore.png" alt="">
+            </a>
+                <div class="menu"></div>
+            <div class="ac">
+                <a href="">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+                <a href="dangky.html">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+                <a href="">
+                    <i class="fa-regular fa-heart"></i>
+                </a>
+                <a href="giohang.html">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                </a>
+            </div>
+        </div>
+        </nav>
+
+        <section>
+            <div></div>
+            <div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </section>
+
+        <h2 id="name"></h2>
+        <div class="container">
+
+        <main class="">
+            <div id="sort">
+                <ul id="list1" onclick="toggleList('list1')">Loại
+                    <li><a href="loai.html?id=1">Samsung</a></li>
+                    <li><a href="loai.html?id=2">Iphone</a></li>
+                    <li><a href="loai.html?id=3">Oppo</a></li>
+                    <li><a href="loai.html?id=4">Xiaomi</a></li>
+                    <li><a href="loai.html?id=5">Vivo</a></li>
+                    <li><a href="loai.html?id=6">Realme</a></li>
+                </ul>
+                
+                <ul id="list2" onclick="toggleList('list2')">Tình trạng
+                    <li><a href="">Còn hàng</a></li>
+                    <li><a href="">Hết hàng</a></li>
+                </ul>
+
+
+                <ul id="list3" onclick="toggleList('list3')">Giá
+                    <li>Từ
+                        <span>đ</span>
+                        <input type="number" min="0" max="20000000" placeholder="0">
+                    </li>
+                    <li>Đến
+                        <span>đ</span>
+                        <input type="number"min="0" max="20000000" placeholder="20.000.000">
+                    </li>
+    
+                    <li style="margin-top: 13px;"><a href="">Lọc</a>
+                    </li>
+                </ul>
+
+                <ul id="list4" onclick="toggleList('list4')">Giảm giá
+                    <li><a onclick="giamgia(0)" href="javascript:void(0)" value="0">Không giảm giá</a></li>
+                    <li><a onclick="giamgia(5)" href="javascript:void(0)" value="5">Giảm giá 5%</a></li>
+                    <li><a onclick="giamgia(10)" href="javascript:void(0)" value="10">Giảm giá 10%</a></li>
+                    <li><a onclick="giamgia(15)" href="javascript:void(0)" value="15">Giảm giá 15%</a></li>
+                    <li><a onclick="giamgia(20)" href="javascript:void(0)" value="20">Giảm giá 20%</a></li>
+
+                </ul>
+                <div class="ap"></div>
+            </div>
+            <div id="product">
+
+                <div class='listsp_ip'>
+                    <div id="data">
+
+
+                <% for(let p of products) { %>
+
+                <div class="sp">
+                    <div class="sale_off">
+                        <%= p.giam_gia %>%
+                </div>
+                        <div class="check" >
+                            <span>
+                                <button onclick=""><i class="fa-solid fa-bag-shopping"></i></button>
+                            </span>
+                            <span>
+                                <button href=""><i class="fa-solid fa-heart"></i></button>
+                            </span>
+                        </div>
+                        <a href=""><img src="<%= p.hinh %>"></a>
+                        
+                        
+                        <p><%= p.ten_sp %></p>
+                        <a class="more" href="product-infor/<%= p.id %>">+ Xem thông tin</a>
+                        <% if (Number(p.giam_gia) !== 0) { %>
+                            <% var giasale = Number(p.gia - p.gia * (p.giam_gia / 100)).toLocaleString("vi"); %>
+                            <h4><del><%= Number(p.gia).toLocaleString("vi") %>VND</del> <%= giasale %>VND</h4> 
+                        <% } else { %>
+                            <h4><%=Number (p.gia).toLocaleString("vi") %>VND</h4> 
+                        <% } %>
+
+
+                    </div>
+
+                    <% } %>
+
+                </div>
+            </div>
+            </div>
+        </main>
+    </div>
+
+        <footer>
+            <section class="first">
+                <div>
+                    <i class="fa-solid fa-box"></i>
+                    <h2>Giao hàng miễn phí</h2>
+                    <div>
+                        <p>Hỗ trợ giao hàng, trả hàng miễn phí trong 7 ngày</p>
+
+                    </div>
+                </div>
+                <div>
+                    <i class="fa-solid fa-credit-card"></i>
+                    <h2>Thanh toán tiện lợi</h2>
+                    <div>
+                        <p>Thanh toán với nhiều hình thức, hỗ trợ trả góp</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="fa-solid fa-headset"></i>
+                    <h2>Chăm sóc khách hàng</h2>
+                    <div>
+                        <p>Đội ngũ nhân viên hỗ trợ và tư vấn 24/7</p>
+                    </div>
+                </div>
+            </section>
+            <section class="second">
+
+                <div class="locate">
+                    <a href="index.html">
+                        <img src="../ZTStore.png" alt="">
+                    </a>
+
+
+                    <p>
+                        <i class="fa-solid fa-location-dot"></i><span>
+                            ZT TECH, Quang Trung, Q12,
+                            TP Hồ Chí Minh    
+                    </span>
+                </p>
+
+                    <p><i class="fa-solid fa-phone-volume"></i><span>
+                        +84.867.991.xyz
+                    </span>
+                </p>
+
+                    <p><i class="fa-solid fa-envelope"></i><span>
+                        vinhntps28930@fpt.edu.vn
+                    </span>
+                </p>
+                </div>
+
+                <div class="tag account">
+                    <strong>Tài khoản</strong>
+                    <a href="">Chính sách</a>
+                    <a href="">Đăng nhập</a>
+                    <a href="">Đăng ký</a>
+                    <a href="">Đơn hàng</a>
+                </div>
+                <div class="tag">
+                    <strong>Thông tin</strong>
+                    <a href="">Blog</a>
+                    <a href="">Công việc</a>
+                    <a href="">FAQ</a>
+                    <a href="">Chính sách bảo mật</a>
+                </div>
+                <div class="tag">
+                    <strong>Mạng xã hội</strong>
+                    <a href="">
+                        <i class="fa-brands fa-facebook-f"></i> facebook
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-instagram"></i> instagram
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-linkedin-in"></i> linkedin
+                    </a>
+                    <a href="">
+                        <i class="fa-brands fa-pinterest"></i> pinterest
+                    </a>
+                </div>
+                <div class="contact">
+                    <h2>Theo dõi & nhận thông báo</h2>
+                    <form action="">
+                        <input type="text" placeholder="Email của bạn">
+                        <button type="submit" title="Gửi">➦</button>
+
+                    </form>
+                </div>
+            </section>
+            <section class="end">
+                    <p>Được thực hiện bởi Nguyễn Tấn Vinh - TiroSs</p>
+                    <p>Email: vutrongphung1212@gmail.com</p>
+            </section>
+        </footer>
+
+
+
+
+    </body> 
+</html>
+<script src="../js/functions.js"></script>
+<script src="../js/category.js"></script>
+<script src="../js/cart.js"></script>
+<script>hienmenu()</script>
+<script>
+    const params = new URLSearchParams(location.search);
+    let id = Number(params.get('id'));
+    let sale = Number(params.get('sale'));
+    // hiengiamgia(sale);
+    hiensptheoloai(id);
+</script>
+
+<script>
+    function toggleList(listId) {
+    var list = document.getElementById(listId);
+    list.style.maxHeight = list.style.maxHeight ? null : list.scrollHeight + "px";
+    list.childNodes.style.disabled='none';
+}
+
+</script>
+<!-- <script>hienspmoi(20);</script> -->
+<!-- <script>hienformdangky();</script> -->
+
+    

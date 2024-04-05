@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRANG CHỦ - ADMIN</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <!-- Chart.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css">
+</head>
+<style>
+    .tag {
+        width: 80%;
+        height: 70px;
+        display: flex;
+        font-size: 30px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+</style>
+<body>
+    <div class="sidebar">
+        <h2 class="sidebar-heading">Admin Menu</h2>
+        <ul>
+            <li><a href="/admin"><i class="fas fa-home"></i> Trang chủ</a></li>
+            <li><a href="/categories"><i class="fas fa-list-alt"></i> Quản lí danh mục</a></li>
+            <li><a href="/products"><i class="fas fa-cubes"></i> Quản lí sản phẩm</a></li>
+            <li><a href="#"><i class="fas fa-shopping-cart"></i> Quản lí đơn hàng</a></li>
+            <li><a href="/user-manager"><i class="fas fa-users"></i> Quản lí khách hàng</a></li>
+        </ul>
+        <a href="/" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Thoát</a>
+    </div>
+    <div class="content">
+        <h2>Thống kê số lượng các thực thể</h2>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <h3><i class="fas fa-users"></i> Users</h3>
+                <p id="userCount" class="tag">0 Người dùng</p>
+                <canvas id="userChart" width="300" height="200"></canvas>
+            </div>
+            <div class="col-md-4">
+                <h3><i class="fas fa-cubes"></i> Products</h3>
+                <p id="productCount" class="tag">0 Sản phẩm</p>
+                <canvas id="productChart" width="300" height="200"></canvas>
+            </div>
+            <div class="col-md-4">
+                <h3><i class="fas fa-list-alt"></i> Categories</h3>
+                <p id="categoryCount" class="tag">0 Danh mục</p>
+                <canvas id="categoryChart" width="300" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script>
+        var userData = <%= users.length %>;
+        var productData = <%= products.length %>;
+        var categoryData = <%= categories.length %>;
+
+        document.getElementById('userCount').innerText = userData + " Người dùng";
+        document.getElementById('productCount').innerText = productData + " Sản phẩm";
+        document.getElementById('categoryCount').innerText = categoryData + " Danh mục";
+
+        var userCtx = document.getElementById('userChart').getContext('2d');
+        var userChart = new Chart(userCtx, {
+            type: 'bar',
+            data: {
+                labels: [''],
+                datasets: [{
+                    label: 'Người dùng',
+                    data: [userData],
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var productCtx = document.getElementById('productChart').getContext('2d');
+        var productChart = new Chart(productCtx, {
+            type: 'bar',
+            data: {
+                labels: [''],
+                datasets: [{
+                    label: 'Sản phẩm',
+                    data: [productData],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        var categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        var categoryChart = new Chart(categoryCtx, {
+            type: 'bar',
+            data: {
+                labels: [''],
+                datasets: [{
+                    label: 'Danh mục',
+                    data: [categoryData],
+                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                    borderColor: 'rgba(255, 206, 86, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+</body>
+</html>

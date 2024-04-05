@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa sản phẩm</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+        body {
+            width: 80%;
+            margin: auto;
+            font-family: Arial, sans-serif;
+        }
+        h2 {
+            color: red;
+            text-align: center;
+        }
+        form {
+            margin: auto;
+            width: 60%;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        label {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        img {
+            display: block;
+            margin: 10px auto;
+            max-width: 200px;
+            height: auto;
+        }
+        .button {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #c30000;
+        }
+    </style>
+</head>
+<div class="sidebar">
+    <h2 class="sidebar-heading">Admin Menu</h2>
+    <ul>
+        <li><a href="/"><i class="fas fa-home"></i> Trang chủ</a></li>
+        <li><a href="/categories"><i class="fas fa-list-alt"></i> Quản lí danh mục</a></li>
+        <li><a href="/products"><i class="fas fa-cubes"></i> Quản lí sản phẩm</a></li>
+        <li><a href="#"><i class="fas fa-shopping-cart"></i> Quản lí đơn hàng</a></li>
+        <li><a href="#"><i class="fas fa-users"></i> Quản lí khách hàng</a></li>
+    </ul>
+</div>
+<body>
+    <form action="/products/edit" method="POST" enctype="multipart/form-data">
+        <h2>Bạn đang sửa sản phẩm ID <%= product.id %></h2>
+        <input type="hidden" name="id" value="<%= product.id %>">
+        <label for="name">Tên sách:</label>
+        <input type="text" id="name" name="name" value="<%= product.name %>">
+        <br>
+        <label for="img">Hình ảnh:</label>
+        <br>
+        <img src="/images/<%= product.img %>" alt="Product Image">
+        <input type="hidden" name="imgOld" value="<%= product.img %>">
+        <br>
+        <input type="file" id="img" name="img">
+        <br>
+        <label for="price">Giá:</label>
+        <input type="text" id="price" name="price" value="<%= product.price %>">
+        <br>
+        <label for="description">Mô tả:</label>
+        <input type="text" id="description" name="description" value="<%= product.description %>">
+        <br>
+        <label for="category">Danh mục:</label>
+        <select name="categoryId" id="category">
+            <% for(let c of categories) { %>
+                <% if (c.id === product.categoryId) { %>
+                    <option value="<%= c.id %>" selected><%= c.ten_loai %></option>
+                <% } else { %>
+                    <option value="<%= c.id %>"><%= c.ten_loai %></option>
+                <% } %>
+            <% } %>
+        </select>
+        <br>
+        <input class="button" type="submit" value="Lưu">
+    </form>
+</body>
+</html>
