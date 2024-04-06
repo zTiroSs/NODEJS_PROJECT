@@ -115,12 +115,14 @@ fetch(`http://localhost:3000/api/products/categorybyID/${id}`)
       </div>`;
 })
 
-
-
-
-
+// Hiện sale
 const hiensale = () =>
-fetch(`http://localhost:3000/api/products/filter/hot`)
+fetch('http://localhost:3000/api/products/filter/hot'
+,{
+    headers:{
+        'Authorization': 'Bearer '+localStorage.getItem('token')
+    } 
+    })
 .then(res => res.json())
 .then(san_pham_arr=>{
     let spmoi_arr =  san_pham_arr.filter(   (sp,index)=> index <  8);
@@ -173,15 +175,74 @@ fetch(`http://localhost:3000/api/products/filter/hot`)
         })
         document.getElementById('sale-products').innerHTML =
         `<div class='sale_products'>
+            <h2>Top những sản phẩm HOT</h2>
           <div id="data">${str}</div>
       </div>`;
     })
 
+// Hiện theo View
+const topview = () =>
+fetch('http://localhost:3000/api/products/filter/view')
+.then(res => res.json())
+.then(san_pham_arr=>{
+    let spmoi_arr =  san_pham_arr.filter(   (sp,index)=> index <  8);
+    let str=``;
+    spmoi_arr.forEach(  sp =>{
+            let { giafm, sale, datefm } = format(sp);
+            var nameup = sp.ten_sp.toUpperCase();
+            if(sale !== 0 ){
+                var giasale = Number(sp.gia-sp.gia*(sale/100)).toLocaleString("vi");
+                var textgia = `
+                    <h4><del>${giafm}đ</del>  ${giasale}đ</h4>
+                `;
+                
+                var tag = `
+                <div class="hot-tag">
+                <i id="eye" class="fa-solid fa-eye" style="font-size:10px"></i>
+                ${sp.xem}
+                </div>
+                <div class="sale_off">
+                    ${sp.giam_gia}%
+                </div>
+                `
+            }
+            else{
+                var textgia = `
+                <h4>${giafm}đ</h4>
+            `;
+            var tag = `
+            <div class="hot-tag">
+            <i id="eye" class="fa-solid fa-eye" style="font-size:10px"></i>
+            ${sp.xem}
+            </div>
+            `
+            }
+            str+= `<div class="sp">
+            ${tag}
+            <div class="check">
+            <span>
+                <button onclick="addtoCart(${sp.id})"><i class="fa-solid fa-bag-shopping"></i></button>
+            </span>
+            <span>
+                <button href=""><i class="fa-solid fa-heart"></i></button>
+            </span>
+            </div>
+            <a href="chitiet.html?id=${sp.id}"> <img src="${sp.hinh}">
+            </a>
+
+            <p>${sp.ten_sp}</p>
+            <a class="more" href="chitiet.html?id=${sp.id}">+ Xem thông tin</a>
+            ${textgia}
+            </div>`
+        })
+        document.getElementById('topview-products').innerHTML =
+        `<div class='sale_products'>
+            <h2>TOP NHỮNG SẢN PHẨM CÓ LƯỢT XEM NHIỀU NHẤT</h2>
+          <div id="data">${str}</div>
+      </div>`;
+    })
 
 // Chi tiết sản phẩm
-
-
-
 const chitietsp = async id => {
     const sp = await fetch (`http://localhost:3000/api/products/${id}`)
     .then (res => res.json())
@@ -231,3 +292,55 @@ const chitietsp = async id => {
     `;
 }
 
+
+// Tìm sản phẩm
+// const findProducts = () =>{
+//     document.addEventListener('DOMContentLoaded', () => {
+//     const findForm = document.getElementById('findForm');
+//     findForm.addEventListener('submit', async (event) => {
+//         event.preventDefault(); 
+//         const formData = new FormData(findForm);
+//         const searchValue = formData.get('tukhoa');
+//         window.location.href = `find.html?key=${searchValue}`;
+//         try {
+//             const response = await fetch(`http://localhost:3000/api/products/search/${searchValue}`);
+//             const data = await response.json();
+//             if (response.ok) {
+//                 console.log(data);
+//             } else {
+//                 console.error(data.message);
+//             }
+//         } catch (error) {
+//             console.error('Có lỗi khi gửi yêu cầu tới API:', error);
+//         }
+//     });
+// });
+// }
+
+
+
+const findProducts = () => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const findForm = document.getElementById('findForm');
+        findForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Ngăn chặn việc submit form một cách truyền thống
+            const formData = new FormData(findForm);
+            const searchValue = formData.get('tukhoa');
+            window.location.href = `find.html?key=${searchValue}`; // Chuyển trang và truyền tham số
+        });
+    });
+}
+
+
+
+
+// Xóa token 
+// const delToken = () =>{
+//     console.log(localStorage.getItem('token'));
+//     setTimeout(() => {
+//         localStorage.removeItem('token');
+//         console.log('Token đã được xóa');
+//         window.location.href = 'index.html';
+//         alert('Đã tự động đăng xuất!')
+//     }, 60000);
+// }

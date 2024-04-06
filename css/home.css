@@ -499,6 +499,7 @@ main{
 .sale_products{
     height: 100%;
 }
+
 .sale_products #data{ 
     display:grid; 
     height: 100%;
@@ -617,4 +618,8 @@ main{
     height: 55%;
     margin-bottom: 20px;
     transition: transform 0.8s ease;
+}
+#eye{
+    font-size: 5px;
+    color: black;
 }

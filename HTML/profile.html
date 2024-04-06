@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <header class="" style="height: 4%;"> 
+        <div class="ctn">
+            <!-- MAP -->
+            <div class="map">
+                <a href="#">Trang chủ</a>
+                <a href="#">Giới thiện</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách</a>
+                <a href="#">Ưu đãi</a>
+            </div>
+            <!-- Mạng xã hội -->
+            <div class="mx">
+                <a href="">
+                    <i class="fa-brands fa-twitter"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-linkedin"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-youtube"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-facebook"></i>
+
+                </a>
+            </div>
+
+        </div>
+    </header>
+    <!-- HEADER MENU -->
+    <nav class=" text-center" style="height: 8%;"> 
+        <div class="ctn">
+        <a class="logo" href="index.html">
+            <img src="../public/IMG/ZTStore.png " alt="">
+        </a>
+            <div class="menu">
+
+            </div>
+
+        <div class="ac">
+            <form action="/products/search" id="findForm" method="get">
+                <input type="text" name="tukhoa" id="tukhoa" placeholder="Tìm kiểm sản phẩm">
+                <!-- <button type="submit">Tìm</button> -->
+            </form>
+            <a href="" class="find" onclick="return showFind()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </a>
+                <a id="user-infor" href="account.html">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            <a href="">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+            <a href="cart.html">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </a>
+
+        </div>
+
+    </div>
+    </nav>
+    <div class="container mt-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h1>User Profile</h1>
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-2 col-form-label">Tên Người Dùng:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username" value="Tên Người Dùng" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" value="user@example.com" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="password" class="col-sm-2 col-form-label">Mật khẩu:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password" value="*********" disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="newPassword" class="col-sm-2 col-form-label">Thay đổi mật khẩu:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="newPassword" placeholder="Nhập mật khẩu" style="margin-bottom: 10px;">
+                            <input type="password" class="form-control" id="RenewPassword" placeholder="Xác nhận mật khẩu">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <button type="submit" class="btn btn-primary mr-2" onclick="changePassword()">Cập nhật thông tin</button>
+                        <a style="display: none;" id="adm-btn" href="admin.html" class="btn btn-success">Trang Admin</a>
+                        <a href="#" class="btn btn-danger mr-2" onclick="logout()">Đăng Xuất</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS và Popper.js -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+<script>
+    function logout(){
+        alert('Đăng xuất thành công!');
+        localStorage.removeItem('token');
+        window.location.href = 'index.html';
+    }
+</script>
+
+<script>
+
+
+</script>
+
+<!-- Show user infor -->
+<script>
+    $(document).ready(function() {
+        // Lấy token từ localStorage
+        const token = localStorage.getItem('token');
+        // Nếu không có token, không làm gì
+        if (!token) {
+            return;
+        }
+        // Gửi yêu cầu lấy thông tin người dùng
+        $.ajax({
+            url: 'http://localhost:3000/api/user/me', // Địa chỉ API để lấy thông tin người dùng
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+            success: function(response) {
+                console.log(response.vaitro);
+                // Cập nhật thông tin người dùng trên giao diện
+                $('#username').val(response.username);
+                $('#email').val(response.email);
+                // Không hiển thị mật khẩu trên giao diện
+                $('#password').val('*********');
+                if(response.vaitro == 0){
+                    document.getElementById('adm-btn').style.display = '';
+                }
+
+                const changePassword = () => {
+                    const newPass = document.getElementById('newPassword').value;
+                    const RenewPass = document.getElementById('RenewPassword').value;
+                    if(newPass != RenewPass){
+                        alert('Mật khẩu mới không khớp!');
+                        console.log(response.vaitro);
+                    }
+                    else{
+                        fetch(`http://localhost:3000/api/user/changepass/${response.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                            password: newPass.value
+                            })
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Đăng ký thất bại!');
+                            } 
+                            else{
+                                alert('done');
+                            }
+                        })
+                    }
+                };
+                
+            },
+
+            error: function(error) {
+                console.log('Lỗi khi lấy thông tin người dùng:', error);
+            }
+        });
+    });
+</script>

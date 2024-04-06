@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/account.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Modern Login Page | AsmrProg</title>
+</head>
+
+<body>
+            <!-- HEADER -->
+            <header class="" style="height: 4%;"> 
+                <div class="ctn">
+                    <!-- MAP -->
+                    <div class="map">
+                        <a href="#">Trang chủ</a>
+                        <a href="#">Giới thiện</a>
+                        <a href="#">Liên hệ</a>
+                        <a href="#">Chính sách</a>
+                        <a href="#">Ưu đãi</a>
+                    </div>
+                    <!-- Mạng xã hội -->
+                    <div class="mx">
+                        <a href="">
+                            <i class="fa-brands fa-twitter"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-instagram"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-linkedin"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-youtube"></i>
+
+                        </a>
+                        <a href="">
+                            <i class="fa-brands fa-facebook"></i>
+
+                        </a>
+                    </div>
+
+                </div>
+            </header>
+            <!-- HEADER MENU -->
+            <nav class=" text-center" style="height: 8%;"> 
+                <div class="ctn">
+                <a class="logo" href="index.html">
+                    <img src="../public/IMG/ZTStore.png " alt="">
+                </a>
+                    <div class="menu">
+
+                    </div>
+
+                <div class="ac">
+                    <form action="" id="findForm" action="timkiem.html" method="get">
+                        <input type="text" name="" id="tukhoa" placeholder="Tìm kiểm sản phẩm">
+                    </form>
+                    <a href="" class="find" onclick="return showFind()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                        <a id="user-infor" href="register.html">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                    <a href="">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
+                    <a href="cart.html">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </a>
+
+                </div>
+
+            </div>
+            </nav>
+
+
+<section class="ctnx">
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Đăng kí</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>Đăng kí tài khoản mới</span>
+                <input type="text" placeholder="Họ tên" name="fullname" id="fullname">
+                <input type="text" placeholder="Tên người dùng" name="username" id="usernameX">
+                <input type="email" placeholder="Email" name="email" id="email">
+                <input type="password" placeholder="Mật khẩu" name="password" id="passwordX">
+                <input type="password" placeholder="Nhập lại mật khẩu" name="password" id="repassword">
+                <button class="buttonX" id="buttonX" type="button">Đăng kí</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form id="loginForm" class="log-in">
+                <h1>Đăng nhập</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>Sử dụng tài khoản của bạn</span>
+                <input type="text" name="username" id="usernameY" placeholder="Username">
+                <input type="password" name="password" id="passwordY" placeholder="Password">
+                <a href="#">Bạn quên mật khẩu?</a>
+                <button class="btn btn-primary buttonY" type="button" id="buttonY">ĐĂNG NHẬP</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bạn đã có tài khoản?</h1>
+                    <p>Đăng nhập ngay để sử dụng toàn bộ tính năng của cửa hàng!</p>
+                    <button class="hidden" id="login">Đăng nhập ngay!!!</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Xin chào, </h1>
+                    <p>Nếu bạn chưa có tài khoản, hãy đăng kí ngay!!!</p>
+                    <button class="hidden" id="register">Tạo tài khoản</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script>
+    const container = document.getElementById('container');
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
+    registerBtn.addEventListener('click', () => {
+        container.classList.add("active");
+    });
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove("active");
+    });
+    </script>
+</body>
+
+<!-- LOGIN SCRIPT -->
+<script>
+    const buttonY = document.getElementById('buttonY');
+    buttonY.addEventListener('click', () => {
+    const username = document.getElementById('usernameY').value;
+    const password = document.getElementById('passwordY').value;
+
+    if (username === '' || password === '') {
+        alert('Vui lòng nhập đầy đủ thông tin');
+        return;
+    }
+    fetch('http://localhost:3000/api/user/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Sai thông tin đăng nhập!');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if(data.token){
+            localStorage.setItem('token', data.token);
+            alert('Đăng nhập thành công');
+            window.location.href = 'index.html';
+        }
+        else{
+            alert('Đăng nhập thất bại');
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        alert(error.message);
+    });
+});
+</script>
+
+
+<script>
+    const fullname = document.getElementById('fullname');
+    const username = document.getElementById('usernameX');
+    const email = document.getElementById('email');
+    const password = document.getElementById('passwordX');
+    const repassword = document.getElementById('repassword');
+    const buttonX = document.getElementById('buttonX');
+  
+  buttonX.addEventListener('click', () => {
+      if (fullname.value === '' || email.value === '' || username.value === '' || password.value === '' || repassword.value === '') {
+          alert('Vui lòng nhập đầy đủ thông tin');
+          return;
+      }
+  
+      if (password.value !== repassword.value) {
+          alert('Mật khẩu không khớp');
+          return;
+      }
+  
+      fetch('http://localhost:3000/api/user/register', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+          email: email.value,
+          name: fullname.value,
+          username: username.value,
+          password: password.value
+      })
+  })
+  .then(response => {
+      if (!response.ok) {
+          throw new Error('Đăng ký thất bại!');
+      } 
+          return response.json();
+  })
+  .then(data => {
+      console.log(data);  // In ra data để kiểm tra
+      alert(data.message); // Hiển thị thông báo từ server
+      if(data.message === "Đăng ký thành công"){
+          window.location.href = 'account.html';
+      }
+  })
+  .catch(error => {
+      console.log(error);
+      alert(error.message);
+  });
+  
+  
+  
+  
+  });
+  
+  
+  
+  </script>
+  <script src="../routes/api.js"></script>
+</html>

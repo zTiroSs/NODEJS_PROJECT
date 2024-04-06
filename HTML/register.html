@@ -93,8 +93,8 @@
 
 
 
-    <form action="" class="sign-in">    
-        <h2 class="title">Đăng ký tài khoản</h2>
+    <h2 class="title">Đăng ký tài khoản</h2>
+    <form class="sign-in">    
         <p>Họ và tên: 
             <input type="text" name="fullname" id="fullname" placeholder="VD: Nguyễn Tấn Vinh" class="input">
         </p>
@@ -111,7 +111,7 @@
         <p>Nhập lại mật khẩu: 
             <input type="password" name="password" id="repassword" placeholder="Nhập lại mật khẩu của bạn" class="input">
         </p>
-        <button class="btn" id="btn">Đăng ký</button>
+        <button class="btn" id="btn" type="button">Đăng ký</button>
     </form>
 
     <div class="switch-page">
@@ -126,47 +126,60 @@
 </body>
 </html>
 <script>
-    const fullname = document.getElementById('fullname');
-    const username = document.getElementById('username');
-    const email = document.getElementById('email');
-    const password = document.getElementById('password');
-    const repassword = document.getElementById('repassword');
-    const button = document.getElementById('btn');
+  const fullname = document.getElementById('fullname');
+const username = document.getElementById('username');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const repassword = document.getElementById('repassword');
+const button = document.getElementById('btn');
 
-    button.addEventListener('click', async () => {
-    if (fullname.value === ''|| email.value === '' || username.value === '' || password.value === '' || 
-    repassword.value === '') {
+button.addEventListener('click', () => {
+    if (fullname.value === '' || email.value === '' || username.value === '' || password.value === '' || repassword.value === '') {
         alert('Vui lòng nhập đầy đủ thông tin');
         return;
     }
+
     if (password.value !== repassword.value) {
         alert('Mật khẩu không khớp');
         return;
     }
-    try{
-    const response = await fetch('http://localhost:3000/api/user/register', {
+
+    fetch('http://localhost:3000/api/user/register', {
     method: 'POST',
     headers: {
-    'Content-Type': 'application/json'
+        'Content-Type': 'application/json'
     },
-        body: JSON.stringify({
+    body: JSON.stringify({
         email: email.value,
         name: fullname.value,
         username: username.value,
         password: password.value
     })
-    });
-    const newUser = await response.json();
-    console.log("Data from API:", newUser);
-        if (newUser) {
-            alert('Đăng ký thành công');
-        } else {
-            alert('Đăng ký thất bại');
-        }
-    }catch(error) {
-        console.log(error);
-        alert('Đăng ký thất bại');
-    };
+})
+.then(response => {
+    if (!response.ok) {
+        throw new Error('Đăng ký thất bại!');
+    } 
+        return response.json();
+})
+.then(data => {
+    console.log(data);  // In ra data để kiểm tra
+    alert(data.message); // Hiển thị thông báo từ server
+    if(data.message === "Đăng ký thành công"){
+        window.location.href = 'login.html';
+    }
+})
+.catch(error => {
+    console.log(error);
+    alert(error.message);
 });
+
+
+
+
+});
+
+
+
 </script>
 <script src="../routes/api.js"></script>

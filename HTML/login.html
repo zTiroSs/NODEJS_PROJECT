@@ -16,10 +16,78 @@
     <link rel="stylesheet" href="../public/stylesheets/log-in.css" type="text/css">
 </head>
 <body>
+    <header class=""> 
+        <div class="ctn">
+            <!-- MAP -->
+            <div class="map">
+                <a href="#">Trang chủ</a>
+                <a href="#">Giới thiện</a>
+                <a href="#">Liên hệ</a>
+                <a href="#">Chính sách</a>
+                <a href="#">Ưu đãi</a>
+            </div>
+            <!-- Mạng xã hội -->
+            <div class="mx">
+                <a href="">
+                    <i class="fa-brands fa-twitter"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-instagram"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-linkedin"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-youtube"></i>
+
+                </a>
+                <a href="">
+                    <i class="fa-brands fa-facebook"></i>
+
+                </a>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- HEADER MENU -->
+    <nav class=" text-center" > 
+        <div class="ctn">
+        <a class="logo" href="index.html">
+            <img src="/IMG/ZTStore.png" alt="">
+        </a>
+            <div class="menu"></div>
+            
+        <div class="ac">
+
+            <form action="" id="findForm" action="timkiem.html" method="get">
+                <input type="text" name="" id="tukhoa" placeholder="Tìm kiểm sản phẩm">
+            </form>
+            <a href="" class="find" onclick="return showFind()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+            </a>
+            <a href="/users/log-in">
+                <i class="fa-solid fa-user"></i>
+            </a>
+            <a href="">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+            <a href="giohang.html">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </a>
+
+        </div>
+
+    </div>
+    </nav>
     <div class="container">
         <!-- FORM -->
         <h2 class="title">Đăng nhập tài khoản</h2>
-        <form id="loginForm"> <!-- Thêm id cho form -->
+        <form id="loginForm" class="log-in"> <!-- Thêm id cho form -->
             <p>Tên tài khoản: 
                 <input type="text" name="username" id="username" placeholder="Từ 8-14 kí tự" class="input">
             </p>
@@ -28,11 +96,16 @@
             </p>
             <button class="btn btn-primary button" type="button">Đăng nhập</button> <!-- Thay đổi type của button từ submit thành button -->
         </form>
+        <div class="switch-page">
+            <span>Bạn chưa có tài khoản? </span>
+            <a href="register.html">Đăng kí ngay!</a>
+        </div>
     </div>
     <!-- </form> -->
+    
     <script>
-       const button = document.querySelector('button');
-button.addEventListener('click', () => {
+    const button = document.querySelector('button');
+    button.addEventListener('click', () => {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
@@ -40,7 +113,6 @@ button.addEventListener('click', () => {
         alert('Vui lòng nhập đầy đủ thông tin');
         return;
     }
-
     fetch('http://localhost:3000/api/user/login', {
         method: 'POST',
         headers: {
@@ -51,18 +123,25 @@ button.addEventListener('click', () => {
             password: password
         })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Sai thông tin đăng nhập!');
+        }
+        return response.json();
+    })
     .then(data => {
-        console.log(data);
-        alert('Đăng nhập thành công');
-        // Lưu token vào localStorage
-        localStorage.setItem('token', data.token);
-        console.log(localStorage.getItem('token'));
-        window.location.href = 'index.html';
+        if(data.token){
+            localStorage.setItem('token', data.token);
+            alert('Đăng nhập thành công');
+            window.location.href = 'index.html';
+        }
+        else{
+            alert('Đăng nhập thất bại');
+        }
     })
     .catch(error => {
         console.log(error);
-        alert('Đăng nhập thất bại');
+        alert(error.message);
     });
 });
     </script>

@@ -5,6 +5,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const multer = require('multer');
 const connectDb = require('../models/db');
+const { log } = require('debug/src/browser');
 // const upload = multer({ dest: '../public/images/' }); 
 //Thiết lập nơi lưu trữ và tên file
 let storage = multer.diskStorage({
@@ -288,19 +289,17 @@ router.put('/users/:id', upload.single('img'), async (req, res,next) => {
         res.status(400).json({message: 'Not found'});
     }
   });
-// Chi tiết user
-router.get('/users/:id',async(req,res,next)=>{
-    const db = await connectDb();
-    const usersCollection = db.collection('users');
-    let id = req.params.id;
-    const user = await usersCollection.findOne({id: parseInt(id)});
-    if(user){
-        res.status(200).json(user);
-    }
-    else{
-        res.status(400).json({message: 'Khong tim thay'});
-    }
-  });
+
+
+
+
+
+
+
+
+
+
+
 //   Xóa danh mục
 router.delete('/users/:id',async(req,res,next)=>{
     const db = await connectDb();
@@ -412,44 +411,47 @@ router.get('/products/sort/:filter/limit/:limit', async (req, res, next)=>{
 })
 //Chức năng đăng ký tài khoản mã hóa mật khẩu bằng bcrypt
 router.post('/user/register', upload.single('img'), async(req, res, next)=>{
-    let {name,username,password, email  } = req.body
-    const db=await connectDb();
-    const userCollection=db.collection('users');
-    let checkemail=await userCollection.findOne({email: email});
-    if(checkemail){
-    res.status(409).json({message: "Email đã tồn tại"});
-    }else{
-    let lastuser= await userCollection.find().sort({id:-1}).limit(1).toArray();
-    let id= lastuser[0] ? lastuser[0].id+1 : 1;
-    const salt = bcrypt.genSaltSync(10);
-    let hashPassword=bcrypt.hashSync(password,salt);
-    let newUser={id:id,
-        name,username, 
-        password: hashPassword, 
-        email: email, 
-        vaitro: "1", 
-        trangthai:"1"};
-    let result = await userCollection.insertOne(newUser);
-    if(result){
-    res.status(200).json(newUser);
-    }else{
-    res.status(500).json({message: "Lỗi"});
+    let {name, username, password, email} = req.body;
+    const db = await connectDb();
+    const userCollection = db.collection('users');
+    let checkemail = await userCollection.findOne({email: email});
+    let checkusername = await userCollection.findOne({username: username});
+    
+    if(checkemail || checkusername){
+        res.status(409).json({message: "Email hoặc Tên người dùng đã tồn tại"});
+    } 
+    else {
+        let lastuser = await userCollection.find().sort({id: -1}).limit(1).toArray();
+        let id = lastuser[0] ? lastuser[0].id + 1 : 1;
+        const salt = bcrypt.genSaltSync(10);
+        let hashPassword = bcrypt.hashSync(password, salt);
+        let newUser = {
+            id: id,
+            name: name,
+            username: username,
+            password: hashPassword,
+            email: email,
+            vaitro: "1",
+            trangthai: "1"
+        };
+        let result = await userCollection.insertOne(newUser);
+        
+        if(result){
+            res.status(200).json({message: "Đăng ký thành công"});
+        } else {
+            res.status(500).json({message: "Lỗi"});
         }
     }
- })
-
-// Chức năng đăng nhập có sử dụng token
+});
 // Chức năng đăng nhập có sử dụng token
 router.post('/user/login', upload.single('img'), async (req, res, next) => {
     let { username, password } = req.body;
     const db = await connectDb();
     const userCollection = db.collection('users');
-    
     const user = await userCollection.findOne({ username: username });
-    
     if (user) {
         if (bcrypt.compareSync(password, user.password)) {
-            const token = jwt.sign({ username: user.username, isAdmin: user.isAdmin }, 'vinh', { expiresIn: '60s' });
+            const token = jwt.sign({ username: user.username, isAdmin: user.isAdmin }, 'vinh', { expiresIn: '300s' });
             res.status(200).json({ token: token });
         } else {
             res.status(403).json({ message: 'Email hoặc mật khẩu không đúng!' });
@@ -462,7 +464,6 @@ router.post('/user/login', upload.single('img'), async (req, res, next) => {
 // Middleware xác thực token
 function authenToken(req, res, next) {
     const bearerHeader = req.headers['authorization'];
-    
     if (typeof bearerHeader !== 'undefined') {
         const bearerToken = bearerHeader.split(' ')[1];
         jwt.verify(bearerToken, 'vinh', (err, authData) => {
@@ -477,16 +478,90 @@ function authenToken(req, res, next) {
     }
 }
 
+// router.get('/products/filter/hot', async (req, res) => {
 router.get('/products/filter/hot', authenToken, async (req, res) => {
     const db = await connectDb();
     const productCollection = db.collection('products');
     const products = await productCollection.find({ hot: '1' }).toArray();
-    
     if (products && products.length > 0) {
         res.status(200).json(products);
     } else {
         res.status(400).json({ message: 'Không có sản phẩm hot' });
     }
 });
+
+router.get('/products/filter/view', async (req, res) => {
+    const db = await connectDb();
+    const productCollection = db.collection('products');
+    const products = await productCollection.find().sort({xem: -1}).toArray();
+    if (products && products.length > 0) {
+        res.status(200).json(products);
+    } else {
+        res.status(400).json({ message: 'Không lấy được sản phẩm nào!' });
+    }
+});
+
+// Chi tiết user
+router.get('/users/:id',async(req,res,next)=>{
+    const db = await connectDb();
+    const usersCollection = db.collection('users');
+    let id = req.params.id;
+    const user = await usersCollection.findOne({id: parseInt(id)});
+    if(user){
+        res.status(200).json(user);
+    }
+    else{
+        res.status(400).json({message: 'Khong tim thay'});
+    }
+  });
+  router.get('/user/me', authenToken, async (req, res) => {
+    const bearerHeader = req.headers['authorization'];
+    const token = req.headers.authorization?.split(' ')[1];
+    if (!token) {
+        return res.status(401).json({ message: 'Token không hợp lệ' });
+    }
+    try {
+        const decoded = jwt.verify(token, 'vinh');
+        const db = await connectDb();
+        const usersCollection = db.collection('users');
+        const user = await usersCollection.findOne({ username: decoded.username });
+        if (user) {
+            res.status(200).json(user);
+        } else {
+            console.log(token);
+            console.log(decoded);
+            // res.status(404).json({ message: 'Không tìm thấy thông tin user' });
+        }
+    } catch (error) {
+        res.status(401).json({ message: 'Token không hợp lệ' });
+    }
+});
+
+
+//Đổi pass
+// router.put('/api/user/changepass/:id',async (req, res) => {
+//     let newPassword = req.body.password; // Lấy mật khẩu mới từ body của yêu cầu
+//     let id = req.params.id;
+//     const db = await connectDb();
+//     const userCollection = db.collection('users');
+//     let user = await userCollection.findOne({ id: id });
+//     if (!user) {
+//         return res.status(404).json({ message: 'Người dùng không tồn tại' });
+//     }
+//     else{
+//         user.password = newPassword;
+//         let newPass = bcrypt.hashSync(newPassword,salt);
+//         let updateUser = {
+//             password: newPass
+//         };
+//         let result = await userCollection.insertOne(updateUser);
+//         if(result){
+//             res.status(200).json({message: "Đổi mật khẩu thành công"});
+//         } else {
+//             res.status(500).json({message: "Lỗi"});
+//         }
+//     }
+//     return res.status(200).json({ message: 'Mật khẩu đã được cập nhật' });
+// });
 
 module.exports = router;
